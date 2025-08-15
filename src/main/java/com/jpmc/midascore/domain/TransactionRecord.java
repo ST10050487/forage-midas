@@ -24,20 +24,28 @@ public class TransactionRecord {
     @Column(nullable = false, precision = 19, scale = 4)
     private BigDecimal amount;
 
+    @Column(nullable = false, precision = 19, scale = 4)
+    private BigDecimal incentiveAmount;
+
     @Column(nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 
     protected TransactionRecord() {}
 
-    public TransactionRecord(UserRecord sender, UserRecord recipient, BigDecimal amount)
-    {
+    public TransactionRecord(UserRecord sender,
+                             UserRecord recipient,
+                             BigDecimal amount,
+                             BigDecimal incentiveAmount) {
         this.sender = sender;
         this.recipient = recipient;
         this.amount = amount;
+        this.incentiveAmount = incentiveAmount;
     }
-    public Long getId() {return id;}
-    public UserRecord getSender() {return sender;}
-    public UserRecord getRecipient() {return recipient;}
-    public BigDecimal getAmount() {return amount;}
-    public Instant getCreatedAt() {return createdAt;}
+
+    public Long getId() { return id; }
+    public UserRecord getSender() { return sender; }
+    public UserRecord getRecipient() { return recipient; }
+    public BigDecimal getAmount() { return amount; }
+    public BigDecimal getIncentiveAmount() { return incentiveAmount; }
+    public Instant getCreatedAt() { return createdAt; }
 }
